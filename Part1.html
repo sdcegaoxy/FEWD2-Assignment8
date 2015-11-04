@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Part1</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#q1").click(function(){
+                alert("jquery works for q1");
+            });
+            
+            $("#q2").bind("click", function(){
+                alert("jquery works for q2");
+            });
+            
+            $("#q3").on({ 
+                click: function() {alert("You clicked on the button3!");}});
+            
+            $("button[id^='q4-']").click(function(){
+               var btxt=$(this).text();
+                alert(btxt);
+            });
+            
+            $("#q5").width("400px").height("400px");
+            $("#q5").css("background-color","gray");
+            $("#q5").on({ 
+                click: function() {alert("You click the div");},
+                mouseenter: function() {alert("Hovered over the div!");},
+                mouseleave: function() {alert("The mouse left the div!");}
+            });
+            
+            $("#q6").width("400px").height("400px");
+            $("#q6").css("background-color","gray");
+            $("#q6").on({ 
+                click: function() {$("#q5>span").text("You click the div");},
+                mouseenter: function() {$("#q6>span").text("Hovered over the div!");},
+                mouseleave: function() {$("#q6>span").text("The mouse left the div!");}
+            });
+            
+            $("#q7").click(function(event){
+                event.preventDefault();
+                $("#q7:link").css({"color":"red"});
+                alert( event.target.nodeName);
+            });
+            
+            $(window).resize(function() {
+                $("#q8").text("window.with:"+$(window).width()+" window.height:"+$(window).height());
+            });
+            
+             $("#q9").on({ 
+                focus: function() {$("#q9").css({"background-color":"#dddddd"});},
+                blur: function() {$("#q9").css({"background-color":"white"});}
+            });
+            
+            $("#q10").click(function(event){
+                event.preventDefault();
+                 
+                $("input[id^='q10-']").each(function(){
+                    
+                    if($(this).val().length<1){
+                        $(this).css({"border":"solid 1px red"});
+                        $(this).focus();
+                        alert($(this).attr("name")+" is required");
+                    }else{
+                        $(this).css({"border":"solid 1px green"});
+                    };
+                });
+                
+            });
+            
+        });
+    </script>
+
+</head>
+
+<body>
+	<button id="q1">A1:Click me</button>
+	<hr>
+	<button id="q2">A2:Click me</button>
+	<hr>
+	<button id="q3">A3:Click me</button>
+    <hr>
+    <button id="q4-1">First Button</button><button id="q4-2">Second Button</button><br/>
+    <hr>
+    <div id="q5"><span></span></div>
+    <hr>
+    <div id="q6"><span></span></div>
+    <hr>
+    <a id="q7" href="http://www.google.com">Visit Google</a>
+    <hr>
+    <div id="q8"></div>
+    <hr>
+    <input id="q9" type="text">    
+    <hr>
+    <form>
+        Name: <input name="Name" id="q10-name" type="text"/>
+        Email:<input name="Email" id="q10-email" type="email"/>
+        <button id="q10"  >submit</button>
+    </form>
+</body>
+</html>
