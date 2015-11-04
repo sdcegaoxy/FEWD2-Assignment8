@@ -3,6 +3,24 @@
 <head>
 <meta charset="utf-8">
 <title>Lab 2 - Calculator III</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+      $(document).ready(function(){
+        $("input[type='button']").click(function(){
+            if($(this).val()!="="){
+                $("#result").val($("#result").val()+$(this).val());
+            }
+                                        });
+        $("#equal").click(function(){
+             $("#result").val(eval($("#result").val()));
+        });
+          
+         $("input[type='button']").css({"color":"red","width":"25px","height":"25px","margin":"1px"});
+            
+          
+      
+      });
+</script>
 </head>
 
 <body>
