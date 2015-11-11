@@ -6,20 +6,68 @@
 <link rel="stylesheet" href="./jquery-ui-1.11.4.According/jquery-ui.min.css">	
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="./jquery-ui-1.11.4.According/jquery-ui.min.js"></script>
-  
-	<script>
-		    var icons = {
-      header: "ui-icon-circle-plus",
-      activeHeader: "ui-icon-circle-minus"
-    };
+
+<script>
+	 
 		
 	$(function() {
-		$( "#accordion" ).accordion({
-      icons: icons
-    });
+		$("#accordion div").hide();
+		
+		
+		$("#accordion h3").click(function(event){
+			var showindex=$(event.target).index()/2;
+			$("#accordion div").hide();
+			$("#accordion div:eq("+showindex+")").show();
+			
+			
+			
+			$("#accordion h3 span").removeClass("ui-icon-circle-minus");
+			$("#accordion h3 span").addClass("ui-icon-circle-plus");
+			$(this).find("span").toggleClass("ui-icon-circle-plus");
+			$(this).find("span").toggleClass("ui-icon-circle-minus");
+		});
+		
+			
+		$("#accordion h3").each(function(){
+			$(this).html("<a href='#'>"+$(this).text()+"</a>");	
+		});
+		$("#accordion h3").prepend("<span class=\"ui-accordion-header-icon ui-icon ui-icon-circle-plus\"></span>");
+		
+		$("#accordion h3").addClass("ui-accordion-header ui-state-default ui-accordion-header-active ui-state-active ui-corner-top ui-accordion-icons");
+		$("#accordion div").addClass("ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active");
+		
+		
 	  });
-	</script>	
+</script>
+	
+	<style>
+		html,body,h3{
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		body{
+			margin:0, auto;
+		}
+		#accordion{
+			width: 50%;
+			
+		}
+		#accordion h3{
+			margin: 1px;
+			cursor:pointer;
+			height: 25px;
+			padding-top: 5px;
+		} 
+		
+		#accordion a,#accordion span{
+			pointer-events: none;
+			float: left;
+			
+		} 
+		
+		
+	</style>
 
 </head>
 
